@@ -1,0 +1,13 @@
+{
+  "name": "pagenavjs"
+  ,"scripts": {
+    "start": "node app.js"
+  }
+  ,"devDependencies": {
+    "grunt": "~0.4.x"
+    ,"grunt-contrib-uglify": "*"
+    ,"grunt-contrib-watch": "latest"
+    ,"grunt-newer": "*"
+  }
+}
+

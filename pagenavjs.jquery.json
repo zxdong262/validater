@@ -1,0 +1,35 @@
+{
+    "name": "pagenavjs",
+    "title": "pagenav.js",
+    "description": "a js plugin to render pagenav html. it is independent. so it will work with any jquery version.",
+    "keywords": [
+        "pagenav",
+        "js"
+    ],
+    "version": "1.1.1",
+    "author": {
+        "name": "ZHAO Xudong",
+        "email": "zxdong@gmail.com",
+        "url": "http://html5beta.com"
+    },
+    "maintainers": [
+        {
+            "name": "ZHAO Xudong",
+            "email": "zxdong@gmail.com",
+            "url": "http://html5beta.com"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/zxdong262/pagenavjs/blob/master/mit-license.txt"
+        }
+    ],
+    "bugs": "https://github.com/zxdong262/pagenavjs/issues",
+    "homepage": "http://html5beta.com/pagenavjs/",
+    "docs": "http://html5beta.com/pagenavjs/",
+    "demo": "http://html5beta.com/pagenavjs/",
+    "dependencies": {
+        "jquery": ">=1.0"
+    }
+}
