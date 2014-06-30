@@ -1,4 +1,4 @@
-.vr-msg,
+.vr-err,
 .vr-tip {
 	background: #f30;
 	color:#fff;
@@ -13,8 +13,10 @@
 .vr-ok {
 	display: inline-block;
 	vertical-align: middle;
+	padding: 0 5px;
+	color: green;
 }
-.vr-msg:after,
+.vr-err:after,
 .vr-tip:after {
 	top: 2px;
 	margin-top: 0;
@@ -28,4 +30,8 @@
 	border-style: solid;
 	display: block;
 	width: 0;
+}
+
+p {
+	padding-bottom: 5px;
 }

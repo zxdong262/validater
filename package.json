@@ -1,5 +1,5 @@
 {
-  "name": "pagenavjs"
+  "name": "validater"
   ,"scripts": {
     "start": "node app.js"
   }

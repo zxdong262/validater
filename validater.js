@@ -10,10 +10,10 @@ if ( typeof define === 'function' ) {
 		factory($)
 	})
 }
-else factory(jquery)
+else factory(jQuery)
 
 //factory
-factory($) {
+function factory($) {
 
 
 //code start
@@ -57,7 +57,7 @@ vr.evt = function(objs, options) {
 			,customMsg: t.data('custom-msg')
 			,ignore: !!t.data('ignore')
 			,noTip: !!t.data('no-tip')
-			,noOkTip: showOKtipAll && !!t.data('no-ok-tip')
+			,noOkTip: showOKtip && !!t.data('no-ok-tip')
 			,events: t.data('events')
 			,errWrap: t.data('err-wrap')
 		}, rules[name] || {})
@@ -79,8 +79,8 @@ vr.evt = function(objs, options) {
 		t.data('vr-opt', opt)
 
 		//on focus show tip
-		if(showFocusTip && !opt.noTip ) t.on('focus', function() {
-			if(!t[errFunc]('.err-item').length && !opt.noTip) t.output(t, opt, {
+		if(showTipOnfocus && !opt.noTip ) t.on('focus', function() {
+			if(!t[errFunc]('.err-item').length && !opt.noTip) vr.output(t, opt, {
 				cls: 'vr-tip'
 				,msg: opt.tip
 			})
@@ -128,14 +128,14 @@ vr.output = function(t, opt, opt1) {
 }
 
 //check form element function
-vr.check = function(t, opt, finalResult, forceSubmit, select) {
+vr.check = function(t, opt, isSubmit, finalResult, forceSubmit, select) {
 	var v = t.val()
 	,name = t.prop('name')
-	,output = $.validate.output
+	,output = $.validater.output
 	,result = {
 		minLen: opt.minLen? (v.length >= opt.minLen) : 'ignore'
 		,maxLen: opt.maxLen? (v.length <= opt.maxLen) : 'ignore'
-		,custom: opt.custom? opt.custom(t) : 'ignore'
+		,custom: opt.custom? opt.custom(t, opt) : 'ignore'
 		,reg: opt.reg? opt.reg.test(v) : 'ignore'
 	}
 	,shouldCheck = (opt.optional && v) || !opt.optional
@@ -144,35 +144,35 @@ vr.check = function(t, opt, finalResult, forceSubmit, select) {
 	,wrap = opt.wrap
 	wrap[errFunc]('.err-item').remove()
 
-	if(ok && result.minLen === false) output(t, opt, {
+	if(shouldCheck && result.minLen === false) output(t, opt, {
 		select: select
-		,cls: 'vr-msg'
+		,cls: 'vr-err'
 		,msg: opt.minLenMsg || opt.errMsg || opt.tip
 	})
-	else if(ok && result.maxLen === false) {
-		output({
+	else if(shouldCheck && result.maxLen === false) {
+		output(t, opt, {
 			select: select
-			,cls: 'vr-msg'
+			,cls: 'vr-err'
 			,msg: opt.maxLenMsg || opt.errMsg || opt.tip
 		})
 		t.val(v.slice(0, opt.maxLen))
 	}
-	else if(ok && result.relation === false) output({
+	else if(shouldCheck && result.custom === false) output(t, opt, {
 		select: select
-		,cls: 'vr-msg'
+		,cls: 'vr-errg'
 		,msg: opt.relationMsg || opt.errMsg || opt.tip
 	})
-	else if(ok && result.reg === false) output({
+	else if(shouldCheck && result.reg === false) output(t, opt, {
 		select: select
-		,cls: 'vr-msg'
+		,cls: 'vr-err'
 		,msg: opt.regMsg || opt.errMsg || opt.tip
 	})
-	else output({
+	else output(t, opt, {
 		select: select
-		,cls: 'err-ok'
+		,cls: 'vr-ok'
 	})
 	if(pass && isSubmit && (!opt.ignore || forceSubmit)) finalResult.submit[name] = opt.valueFilter?opt.valueFilter(v):v
-	if(!pass && isSubmit) finalResult.res ++
+	else if(!pass && isSubmit) finalResult.res ++
 
 	return pass
 }
@@ -183,11 +183,11 @@ vr.submit = function(objs, forceSubmit) {
 		submit: {}
 		,res: 0
 	}
-	,check = $.validate.check
+	,check = $.validater.check
 	objs.each(function() {
 		var t = $(this)
-		,opt = t.data('opt')
-		check(t, opt, finalResult, forceSubmit, true)
+		,opt = t.data('vr-opt')
+		check(t, opt, true, finalResult, forceSubmit, true)
 	})
 	return finalResult
 }

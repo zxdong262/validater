@@ -7,15 +7,20 @@
 <link rel="stylesheet" href="css/test.css">
 </head>
 <body>
-<div id="wrapper" class="aligncenter">
-	<h1>test validater demo</h1>
+<div id="wrapper" class="centered">
+	<h1>test validater demo 1</h1>
 
 	<!-- demo1 -->
 	<div class="demo1">
-		<h1>demo1: show tip on focus and show ok icon</h1>
+		<p>demo1: show tip on focus and show ok icon</p>
 		<p>
 			only digit: <br />
-			<input type="text" data-tip="only digital" data-reg="[0-9]+" name="digit" />
+			<input type="text" data-tip="only digital" data-reg="^[0-9]+$" name="digit" />
+		</p>
+
+		<p>
+			ignored, will not be submit: <br />
+			<input type="text" data-tip="min length:1" data-min-len="1" name="nx" data-ignore="true" />
 		</p>
 
 		<p>
@@ -36,6 +41,8 @@
 		<p>
 			<a href="javascript:;" class="btn btn-b sub1">submit</a>
 		</p>
+
+
 	</div>
 	<!-- /demo1 -->
 
@@ -51,7 +58,9 @@ $(function() {
 	,opts = {
 		rules: {
 			n3: {
-				custom: function()
+				custom: function(t, opt) {
+					return $('[name="digit"]').val() === t.val()
+				}
 			}
 		}
 	}
@@ -61,7 +70,17 @@ $(function() {
 	vr.defaults.showOKtip = true
 
 	//regist events
-	vr.reg()
+	vr.evt(inputs, opts)
+
+	//on submit
+	$('.sub1').click(function() {
+		var result = vr.submit(inputs)
+		if(result.res) alert(result.res + 'fields has errors!')
+		else {
+			alert('all fields ok!')
+			console.dir(result.submit)
+		}
+	})
 	
 })
 </script>
