@@ -3,18 +3,14 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json')
     ,uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        banner: '/*! <%= pkg.name %> by ZHAO Xudong, html5beta.com <%= grunt.template.today("yyyy-mm-dd") %> */\n'
         ,report: ['min', 'gzip']
         ,mangle: {
           except: ['exports', 'module', 'require']
         }
       }
       ,dist: {
-        files: [{
-          expand: true
-          ,src: 'validater.js'
-          ,dest: 'validater.min.js'
-        }]
+        files: {'./validater.min.js': ['validater.js']}
       }
     }
   })

@@ -112,7 +112,7 @@ vr.output = function(t, opt, opt1) {
 
 	if(cls === 'vr-ok') {
 		t.removeClass('err')
-		if(showTip) wrap[func]('<i class="err-item ' + cls + '">' + vrd.okHtml + '</i>')
+		if(showTip && vrd.showOKtip && !opt.noOkTip) wrap[func]('<i class="err-item ' + cls + '">' + vrd.okHtml + '</i>')
 	}
 	else if(cls === 'vr-tip') {
 		t.removeClass('err')
@@ -139,7 +139,7 @@ vr.check = function(t, opt, isSubmit, finalResult, forceSubmit, select) {
 		,reg: opt.reg? opt.reg.test(v) : 'ignore'
 	}
 	,shouldCheck = (opt.optional && v) || !opt.optional
-	,pass = (result.minLen && result.maxLen && result.relation && result.reg) || !shouldCheck
+	,pass = (result.minLen && result.maxLen && result.custom && result.reg) || !shouldCheck
 	,errFunc = opt.errFunc
 	,wrap = opt.wrap
 	wrap[errFunc]('.err-item').remove()
@@ -159,7 +159,7 @@ vr.check = function(t, opt, isSubmit, finalResult, forceSubmit, select) {
 	}
 	else if(shouldCheck && result.custom === false) output(t, opt, {
 		select: select
-		,cls: 'vr-errg'
+		,cls: 'vr-err'
 		,msg: opt.relationMsg || opt.errMsg || opt.tip
 	})
 	else if(shouldCheck && result.reg === false) output(t, opt, {
@@ -184,6 +184,7 @@ vr.submit = function(objs, forceSubmit) {
 		,res: 0
 	}
 	,check = $.validater.check
+	objs = $(objs.toArray().reverse())
 	objs.each(function() {
 		var t = $(this)
 		,opt = t.data('vr-opt')

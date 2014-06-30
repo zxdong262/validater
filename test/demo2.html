@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/test.css">
 </head>
 <body>
-<div id="wrapper" class="aligncenter">
+<div id="wrapper"  class="centered">
 	<h1>test validater demo 2</h1>
 	
 	<!-- demo2 -->
@@ -15,7 +15,7 @@
 		<p>demo2: do not show tip on focus and do not  show ok icon</p>
 		<p>
 			only digit: <br />
-			<input type="text" data-tip="only digital" data-reg="[0-9]+" name="digit1" />
+			<input type="text" data-tip="only digital" data-reg="^[0-9]+$" name="digit1" />
 		</p>
 
 		<p>
@@ -25,7 +25,7 @@
 
 		<p>
 			password, min length:6, digit and English charactor:<br />
-			<input type="password" data-tip="min length:6, only digit and English charactor" data-max-len="5" name="n21" />
+			<input type="password" data-reg="^[0-9a-zA-Z]+$" data-tip="min length:6, only digit and English charactor" data-min-len="6" name="n21" />
 		</p>
 
 		<p>
@@ -50,9 +50,12 @@ $(function() {
 	,inputs = $('.demo2 input')
 	,opts = {
 		rules: {
-			n3: {
-				custom: function() {
-					return $('[name="n21"]').val() === $('[name="n31"]').val()
+			n31: {
+				custom: function(t, opt) {
+					return $('[name="n21"]').val() === t.val()
+				}
+				,valueFilter: function(v) {
+					return v.split('')
 				}
 			}
 		}

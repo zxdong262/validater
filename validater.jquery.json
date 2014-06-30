@@ -1,0 +1,35 @@
+{
+    "name": "validater"
+    ,"title": "validater"
+    ,"description": "a jquery plugin to help validating form elements, gathering form data and tiping."
+    ,"keywords": [
+        "validater"
+        ,"form"
+    ]
+    ,"version": "1.0.0"
+    ,"author": {
+        "name": "ZHAO Xudong",
+        "email": "zxdong@gmail.com",
+        "url": "http://html5beta.com"
+    }
+    ,"maintainers": [
+        {
+            "name": "ZHAO Xudong",
+            "email": "zxdong@gmail.com",
+            "url": "http://html5beta.com"
+        }
+    ]
+    ,"licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/zxdong262/validater/blob/master/mit-license.txt"
+        }
+    ]
+    ,"bugs": "https://github.com/zxdong262/validater/issues"
+    ,"homepage": "http://html5beta.com/apps/validater.html"
+    ,"docs": "http://html5beta.com/apps/validater.html"
+    ,"demo": "http://html5beta.com/apps/validater.html"
+    ,"dependencies": {
+        "jquery": ">=1.4"
+    }
+}

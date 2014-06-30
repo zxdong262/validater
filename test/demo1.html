@@ -15,27 +15,27 @@
 		<p>demo1: show tip on focus and show ok icon</p>
 		<p>
 			only digit: <br />
-			<input type="text" data-tip="only digital" data-reg="^[0-9]+$" name="digit" />
+			<input class="text-input" type="text" data-tip="only digital" data-reg="^[0-9]+$" name="digit" />
 		</p>
 
 		<p>
 			ignored, will not be submit: <br />
-			<input type="text" data-tip="min length:1" data-min-len="1" name="nx" data-ignore="true" />
+			<input class="text-input" type="text" data-tip="min length:1" data-min-len="1" name="nx" data-ignore="true" />
 		</p>
 
 		<p>
 			min length:1: <br />
-			<input type="text" data-tip="min length:1" data-min-len="1" name="n1" />
+			<input class="text-input" type="text" data-tip="min length:1" data-min-len="1" name="n1" />
 		</p>
 
 		<p>
 			max length:5:<br />
-			<input type="text" data-tip="max length:5" data-max-len="5" name="n2" />
+			<input class="text-input" type="text" data-tip="max length:5" data-max-len="5" name="n2" />
 		</p>
 
 		<p>
 			custom function validate: must equal with the first input: <br />
-			<input type="text" data-tip="must eual with the first input" name="n3" />
+			<input class="text-input" type="text" data-tip="must eual with the first input" name="n3" />
 		</p>
 
 		<p>
@@ -75,7 +75,7 @@ $(function() {
 	//on submit
 	$('.sub1').click(function() {
 		var result = vr.submit(inputs)
-		if(result.res) alert(result.res + 'fields has errors!')
+		if(result.res) alert(result.res + ' fields has errors!')
 		else {
 			alert('all fields ok!')
 			console.dir(result.submit)
