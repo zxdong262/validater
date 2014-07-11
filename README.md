@@ -8,4 +8,15 @@ a jquery plugin to help validating form elements, gathering form data and tiping
 
 ## test
 
-open test/demo1.html and test/demo2.html with browser
+'''bash
+git clone git@github.com:zxdong262/validater.git
+cd validater
+sudo npm install
+node app
+'''
+
+visit 
+
+- [http://localhost:4321/demo1.html](http://localhost:4321/demo1.html)
+- [http://localhost:4321/demo2.html](http://localhost:4321/demo2.html)
+- [http://localhost:4321/demo1-seajs.html](http://localhost:4321/demo1-seajs.html)
