@@ -9,7 +9,7 @@ a jquery plugin to help validating form elements, gathering form data and tiping
 ## test
 
 ```bash
-git clone git@github.com:zxdong262/validater.git
+git clone https://github.com/zxdong262/validater.git
 cd validater
 sudo npm install
 node app
