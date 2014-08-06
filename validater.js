@@ -24,6 +24,8 @@ if(!$) throw new Error('no jquery object!')
 
 var vr = $.validater = {}
 
+vr.version = '1.0.2'
+
 //default options
 vr.defaults = {
 	showTipOnfocus: false
@@ -160,7 +162,7 @@ vr.check = function(t, opt, isSubmit, finalResult, forceSubmit, select) {
 	else if(shouldCheck && result.custom === false) output(t, opt, {
 		select: select
 		,cls: 'vr-err'
-		,msg: opt.relationMsg || opt.errMsg || opt.tip
+		,msg: opt.customMsg || opt.errMsg || opt.tip
 	})
 	else if(shouldCheck && result.reg === false) output(t, opt, {
 		select: select
