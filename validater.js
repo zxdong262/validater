@@ -24,7 +24,7 @@ if(!$) throw new Error('no jquery object!')
 
 var vr = $.validater = {}
 
-vr.version = '1.0.2'
+vr.version = '1.0.3'
 
 //default options
 vr.defaults = {
@@ -65,7 +65,7 @@ vr.evt = function(objs, options) {
 		}, rules[name] || {})
 		,ew = t.siblings('.' + name + '-err-wrap')
 		,wrap = ew.length?ew:t
-		,oew = options.errWrap
+		,oew = opt.errWrap
 		,func = ew.length?'html':'after'
 		,errFunc
 
